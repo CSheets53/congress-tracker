@@ -1,18 +1,22 @@
-import Head from 'next/head';
+import type { NextPageWithLayout } from './_app';
+import type { ReactElement } from 'react';
+import Layout from 'components/Layout';
+import Link from 'next/link';
 import styles from 'styles/Home.module.css';
 
-export default function Home() {
+const Home: NextPageWithLayout = () => {
   return (
     <div className={styles.container}>
-      <Head>
-        <title>Congress Tracker</title>
-        <meta name="description" content="Site to track what's new in Congress" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
-      <main className={styles.main}>
-        <h1 className={styles.title}>Congress Tracker</h1>
-      </main>
+      <h1 className={styles.title}>Congress Tracker</h1>
+      <Link href="/members">Members</Link>
     </div>
-  )
+  );
 }
+
+Home.getLayout = function getLayout(page: ReactElement) {
+  return (
+    <Layout>{page}</Layout>
+  );
+}
+
+export default Home;
