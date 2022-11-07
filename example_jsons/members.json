@@ -1,0 +1,64 @@
+{
+    "members": [
+        {
+            "bioguideId": "M000291",
+            "depiction": {
+                "attribution": "Collection of the U.S. House of Representatives",
+                "imageUrl": "https://www.congress.gov/img/member/m000291_200.jpg"
+            },
+            "district": 3,
+            "name": "Mazzoli, Romano L.",
+            "party": "Democratic",
+            "served": {
+                "House": [
+                    {
+                        "end": 1995,
+                        "start": 1971
+                    }
+                ]
+            },
+            "state": "Kentucky",
+            "url": "https://api.congress.gov/v3/member/M000291?format=json"
+        },
+        {
+            "bioguideId": "L000192",
+            "depiction": {
+                "attribution": null,
+                "imageUrl": ""
+            },
+            "district": 33,
+            "name": "Lee, Gary A.",
+            "party": "Republican",
+            "served": {
+                "House": [
+                    {
+                        "end": 1983,
+                        "start": 1979
+                    }
+                ]
+            },
+            "state": "New York",
+            "url": "https://api.congress.gov/v3/member/L000192?format=json"
+        },
+        {
+            "bioguideId": "S001219",
+            "depiction": {
+                "attribution": null,
+                "imageUrl": ""
+            },
+            "district": 23,
+            "name": "Sempolinski, Joseph",
+            "party": "Republican",
+            "served": {
+                "House": [
+                    {
+                        "end": null,
+                        "start": 2022
+                    }
+                ]
+            },
+            "state": "New York",
+            "url": "https://api.congress.gov/v3/member/S001219?format=json"
+        }
+    ]
+}
