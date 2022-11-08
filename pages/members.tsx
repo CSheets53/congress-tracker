@@ -2,8 +2,6 @@ import MemberCard, { MemberProps } from 'components/MemberCard';
 import { Col, Container, Row } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-const api_key = "4fnmyKS2avuHrzem1IhyZGLZVslbkZPDmZz4BV4r";
-
 // TODO: what would be the prop type here?
 function Members(props: any) {
     const { members } = props.data;
@@ -25,7 +23,7 @@ function Members(props: any) {
 }
 
 export async function getServerSideProps() {
-    const res = await fetch(`https://api.congress.gov/v3/member?api_key=${api_key}&format=json`)
+    const res = await fetch(`https://api.congress.gov/v3/member?api_key=${process.env.CONGRESS_API_KEY}&format=json`)
     const data = await res.json()
 
     // Pass the data to the page's props
