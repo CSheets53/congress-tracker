@@ -1,4 +1,6 @@
 import MemberCard, { MemberProps } from 'components/MemberCard';
+import { Col, Container, Row } from 'react-bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const api_key = "4fnmyKS2avuHrzem1IhyZGLZVslbkZPDmZz4BV4r";
 
@@ -9,11 +11,15 @@ function Members(props: any) {
     return (
         <div>
             <h1>Members</h1>
-            <div>
-                {members.map((member: MemberProps) => 
-                    <MemberCard key={member.bioguideId} {...member} />
-                )}
-            </div>
+            <Container>
+                <Row className="g-4">
+                    {members.map((member: MemberProps) => (
+                        <Col key={member.bioguideId} xs={1} md={3}>
+                            <MemberCard {...member} />
+                        </Col>
+                    ))}
+                </Row>
+            </Container>
         </div>
     );
 }

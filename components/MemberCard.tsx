@@ -1,3 +1,5 @@
+import { Card } from 'react-bootstrap';
+
 export interface MemberProps {
     bioguideId: string;
     depiction: {
@@ -27,9 +29,12 @@ export interface MemberProps {
 
 export default function MemberCard(props: MemberProps) {
     return (
-        <div>
-            <h2>{props.name}</h2>
-            <h3>{props.party}</h3>
-        </div>
+        <Card border="dark" style={{ width: '18rem' }}>
+            <Card.Img variant="top" src={props.depiction.imageUrl} />
+            <Card.Body>
+                <Card.Title>{props.name}</Card.Title>
+                <Card.Subtitle>{props.party}</Card.Subtitle>
+            </Card.Body>
+        </Card>
     );
 }
