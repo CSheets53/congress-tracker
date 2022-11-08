@@ -1,4 +1,4 @@
-import { Card } from 'react-bootstrap';
+import { Card, Image } from 'react-bootstrap';
 
 export interface MemberProps {
     bioguideId: string;
@@ -28,12 +28,52 @@ export interface MemberProps {
 }
 
 export default function MemberCard(props: MemberProps) {
+    // Change text based on party color
+    let partyColor = "green";
+    switch (props.party) {
+        case "Democratic":
+        case "Independent Democrat":
+            partyColor = "blue";
+            break;
+        case "Independent":
+            partyColor = "gray";
+        case "Libertarian":
+            partyColor = "yellow";
+        case "Republican":
+            partyColor = "red";
+            break;
+        default:
+            break;
+    }
+
+    // Set more descriptive data
+    let chamber = "";
+    let timeServed = "";
+    if (props.served.House) {
+        chamber = "House of Representatives";
+        timeServed = `since ${props.served.House[0].start}`
+    } else if (props.served.Senate) {
+        chamber = "Senate";
+        timeServed = `since ${props.served.Senate[0].start}`
+    }
+
     return (
-        <Card border="dark" style={{ width: '18rem' }}>
-            <Card.Img variant="top" src={props.depiction.imageUrl} />
+        <Card border="dark">
+            <div className="mt-3" style={{ height: "12rem", textAlign: "center" }}>
+                <Image 
+                    alt={props.name}
+                    height="100%"
+                    roundedCircle
+                    src={props.depiction.imageUrl} 
+                />
+            </div>
             <Card.Body>
-                <Card.Title>{props.name}</Card.Title>
-                <Card.Subtitle>{props.party}</Card.Subtitle>
+                <div style={{ textAlign: "center" }}>
+                    <Card.Title>{props.name}</Card.Title>
+                    <Card.Subtitle className="p-1" style={{ color: partyColor }}>{props.party}</Card.Subtitle>
+                    <Card.Subtitle className="p-1">{props.state}</Card.Subtitle>
+                    <Card.Subtitle className="p-1">{chamber}: {timeServed}</Card.Subtitle>
+                </div>
             </Card.Body>
         </Card>
     );
