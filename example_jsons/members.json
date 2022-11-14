@@ -60,5 +60,10 @@
             "state": "New York",
             "url": "https://api.congress.gov/v3/member/S001219?format=json"
         }
-    ]
+    ],
+    "pagination": {
+        "count": 2434,
+        "next": "https://api.congress.gov/v3/member?offset=20&limit=20&format=json"
+    },
+    "request": { "contentType": "application/json", "format": "json" }
 }

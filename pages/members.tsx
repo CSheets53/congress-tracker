@@ -5,9 +5,11 @@ import Layout from 'components/Layout';
 import { Col, Container, Row } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-const Members: NextPageWithLayout = (props: any) => {
-    const { members } = props.memberData;
+export type MembersPageProps = {
+    members: MemberProps[],
+};
 
+const Members: NextPageWithLayout<MembersPageProps> = ({ members }) => {
     // Filter to only current members
     const currentMembers = members.filter((member: MemberProps) => {
         if (member.served.House) {
@@ -17,7 +19,7 @@ const Members: NextPageWithLayout = (props: any) => {
         }
 
         return false;
-    }).reverse(); // reverse for correct alphabetical order
+    }).sort((a, b) => a.state.localeCompare(b.state)); // Sort by state alphabetically
     
     return (
         <div>
@@ -41,12 +43,33 @@ Members.getLayout = function getLayout(page: ReactElement) {
     );
 }
 
+// Get all the members by recursively going through the API pages
+const memberUrl = `https://api.congress.gov/v3/member?api_key=${process.env.CONGRESS_API_KEY}&format=json`;
+const limitPerPage = 250;
+
+const getMembers = async (offset: number = 0): Promise<MemberProps[]> => {
+    let url = memberUrl + `&offset=${offset}&limit=${limitPerPage}`;
+    let results = await fetch(url).then(resp => resp.json());
+
+    return results["members"];
+}
+
+const getAllMembers = async (offset: number = 0): Promise<MemberProps[]> => {
+    const results = await getMembers(offset);
+    console.log(`Retreiving data from API starting with entry ${offset}`);
+
+    if (results.length > 0) {
+        return results.concat(await getAllMembers(offset + limitPerPage));
+    } else {
+        return results;
+    }
+}
+
 export async function getServerSideProps() {
-    const res = await fetch(`https://api.congress.gov/v3/member?api_key=${process.env.CONGRESS_API_KEY}&format=json`)
-    const memberData = await res.json()
+    const members = await getAllMembers();
 
     // Pass the data to the page's props
-    return { props: { memberData }}
+    return { props: { members } }
 }
 
 export default Members;

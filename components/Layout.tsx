@@ -2,7 +2,11 @@ import Head from 'next/head';
 import Link from 'next/link';
 import { ReactNode } from 'react';
 
-export default function Layout(props: { children : ReactNode }) {
+type LayoutProps = {
+    children: ReactNode,
+};
+
+export default function Layout({ children }: LayoutProps) {
     return (
         <>
             <Head>
@@ -13,7 +17,7 @@ export default function Layout(props: { children : ReactNode }) {
             <div>
                 <Link href="/">Home</Link>
             </div>
-            <main>{props.children}</main>
+            <main>{children}</main>
         </>
     );
 }

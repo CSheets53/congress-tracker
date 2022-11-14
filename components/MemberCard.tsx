@@ -1,31 +1,31 @@
 import { Card, Image } from 'react-bootstrap';
 
-export interface MemberProps {
-    bioguideId: string;
+export type MemberProps = {
+    bioguideId: string,
     depiction: {
-        attribution: string;
-        imageUrl: string;
+        attribution: string,
+        imageUrl: string,
     },
-    district: number;
-    name: string;
-    party: string;
+    district: number,
+    name: string,
+    party: string,
     served: {
         House?: [
             {
-                end?: number;
-                start?: number;
+                end?: number,
+                start?: number,
             }
         ];
         Senate?: [
             {
-                end?: number;
-                start?: number;
+                end?: number,
+                start?: number,
             }
-        ];
-    };
-    state: string;
-    url: string;
-}
+        ],
+    },
+    state: string,
+    url: string,
+};
 
 export default function MemberCard(props: MemberProps) {
     // Change text based on party color
@@ -58,8 +58,8 @@ export default function MemberCard(props: MemberProps) {
     }
 
     return (
-        <Card border="dark">
-            <div className="mt-3" style={{ height: "12rem", textAlign: "center" }}>
+        <Card border="dark" className="h-100">
+            <div className="mt-3" style={{ textAlign: "center" }}>
                 <Image 
                     alt={props.name}
                     height="100%"
