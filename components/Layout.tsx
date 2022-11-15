@@ -1,6 +1,6 @@
 import Head from 'next/head';
-import Link from 'next/link';
 import { ReactNode } from 'react';
+import { Container, Nav, Navbar } from 'react-bootstrap';
 
 type LayoutProps = {
     children: ReactNode,
@@ -14,9 +14,15 @@ export default function Layout({ children }: LayoutProps) {
                 <meta name="description" content="Site to track what's new in Congress" />
                 <link rel="icon" href="/favicon.ico" />
             </Head>
-            <div>
-                <Link href="/">Home</Link>
-            </div>
+            <Navbar bg="light" expand="lg">
+                <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                <Navbar.Collapse id="basic-navbar-nav">
+                    <Nav className="me-auto">
+                        <Nav.Link href="/">Home</Nav.Link>
+                        <Nav.Link href="/members">Members</Nav.Link>
+                    </Nav>
+                </Navbar.Collapse>
+            </Navbar>
             <main>{children}</main>
         </>
     );
